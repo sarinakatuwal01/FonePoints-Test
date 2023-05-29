@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "14c1aa70-91cb-49ca-9db9-b246c2fb02c4",
+		"name": "Redeem: Positive/ Neagtive Add Categories",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19729300",
+		"_collection_link": "https://monicapostmanworkspace-12.postman.co/workspace/Monica-Workspace~4dbe98f5-8f25-4b4c-af82-b2106f7a2714/collection/19729300-14c1aa70-91cb-49ca-9db9-b246c2fb02c4?action=share&creator=19729300&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Business Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"XAuthToken\", postman.getResponseHeader(\"X-Authorization\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"monica.pradhan13+1@gmail.com\", \"password\": \"U1RBciMxMjM=\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/merchant/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"merchant",
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{XAuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Medicine\"} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/merchant/api/v1/redeem/category/create",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"merchant",
+						"api",
+						"v1",
+						"redeem",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative Case: '@' Special Character Not Accepted",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{XAuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Item@New\"} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/merchant/api/v1/redeem/category/create",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"merchant",
+						"api",
+						"v1",
+						"redeem",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative Case: Blank Space Not Accepted",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{XAuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/merchant/api/v1/redeem/category/create",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"merchant",
+						"api",
+						"v1",
+						"redeem",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative Case: '_' Special Character Not Accepted",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{XAuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"New_Item\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/merchant/api/v1/redeem/category/create",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"merchant",
+						"api",
+						"v1",
+						"redeem",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative Case: '#' Special Character Not Accepted",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{XAuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Item##123\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/merchant/api/v1/redeem/category/create",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"merchant",
+						"api",
+						"v1",
+						"redeem",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative Case: Single Digit Request Not Accepted",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{XAuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"I\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/merchant/api/v1/redeem/category/create",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"merchant",
+						"api",
+						"v1",
+						"redeem",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative Case: Greater Than Maximum Character Not Accepted",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{XAuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/merchant/api/v1/redeem/category/create",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"merchant",
+						"api",
+						"v1",
+						"redeem",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

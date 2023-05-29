@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "0f119186-3c21-4332-9cf8-e1c272bba9cb",
+		"name": "Admin (Settlement)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19729300",
+		"_collection_link": "https://monicapostmanworkspace-12.postman.co/workspace/Monica-Workspace~4dbe98f5-8f25-4b4c-af82-b2106f7a2714/collection/19729300-0f119186-3c21-4332-9cf8-e1c272bba9cb?action=share&creator=19729300&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"token\", postman.getResponseHeader(\"X-Authorization\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"monica.pradhan13@gmail.com\", \"password\": \"U1RBciMxMjM=\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Acquirer List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement/acquirer-list",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement",
+						"acquirer-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Settlement: From Date Fetch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement-date/3a37ca9c-2d8a-4b58-a4be-d727bd03125d",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement-date",
+						"3a37ca9c-2d8a-4b58-a4be-d727bd03125d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create and List Settlement Batch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"toDate\": \"2022-03-15 12:12:00\", \"acquirerId\": \"3a37ca9c-2d8a-4b58-a4be-d727bd03125d\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement/batch/create-and-list",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement",
+						"batch",
+						"create-and-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Individual Batch Settlement",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"batchIds\": [\"7238911647325546\"], \r\n    \"remarks\": \"Settle this batch.\",\r\n    \"acquirerId\": \"3a37ca9c-2d8a-4b58-a4be-d727bd03125d\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement/settle",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement",
+						"settle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Individual Batch Settlement Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"batchIds\": [\"7238911647325546\"],\r\n    \"remarks\": \"When already settled batch requested.\",\r\n    \"acquirerId\": \"3a37ca9c-2d8a-4b58-a4be-d727bd03125d\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement/settle",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement",
+						"settle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Settlement",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"batchIds\": [\"7238911647329485\", \"7238911647329708\"], \r\n    \"remarks\": \"Settle these batches.\",\r\n    \"acquirerId\": \"3a37ca9c-2d8a-4b58-a4be-d727bd03125d\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement/settle",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement",
+						"settle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Settlement Negative Testing",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"batchIds\": [\"7238911647329485\", \"7238911647329708\"], \r\n    \"remarks\": \"Settle these batches.\",\r\n    \"acquirerId\": \"3a37ca9c-2d8a-4b58-a4be-d727bd03125d\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement/settle",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement",
+						"settle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Settle Individual Batch (Test)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"batchIds\": [\"7238911647750552\"], \r\n    \"remarks\": \"Settle this new batch id.\",\r\n    \"acquirerId\": \"3a37ca9c-2d8a-4b58-a4be-d727bd03125d\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement/settle",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement",
+						"settle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Settlement (Test)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"batchIds\": [\"7238911647751594\", \"7238911647751735\"], \r\n    \"remarks\": \"Settle these batches.\",\r\n    \"acquirerId\": \"3a37ca9c-2d8a-4b58-a4be-d727bd03125d\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.13.194.177:91/system/api/v1/settlement/settle",
+					"protocol": "http",
+					"host": [
+						"10",
+						"13",
+						"194",
+						"177"
+					],
+					"port": "91",
+					"path": [
+						"system",
+						"api",
+						"v1",
+						"settlement",
+						"settle"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
